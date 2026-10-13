@@ -5,7 +5,9 @@ Mirror of the OSF project [Boston College - Human Neuroscience Lab Resources](ht
 Contents:
 
 - **EEG** – SOP, preprocessing scripts, PsychoPy template experiments
-- **Eye-tracking** – Tobii SOP, PsychoPy/Titta and Pupil Labs demos
+- **Eye-tracking**
+  - **Tobii** – Tobii Pro Spectrum SOP, PsychoPy/Titta demos
+  - **Pupil Labs** – Neon SOP; PsychoPy demo at [jgeller112/PL_Demo](https://github.com/jgeller112/PL_Demo)
 - **fNIRS** – SOP and PsychoPy experiment
 - **Equipment** – MilliKey DeLux light sensor guide and PsychoPy code
 - **Behavorial** – BioSemi ActiveTwo manual

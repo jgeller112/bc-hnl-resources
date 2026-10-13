@@ -1,0 +1,383 @@
+---
+title: "Pupil Labs Neon Eye-tracking Manual: Boston College Human Neuroscience Lab"
+author: "Jason Geller, Ph.D."
+format:
+  typst:
+    toc: true
+editor: visual
+---
+
+# Code of conduct
+
+The Human Neuroscience Laboratory houses six Pupil Labs Neon wearable eye-trackers.
+
+This manual is the standard way to set up, fit, record, and offload data with the Neon. Follow it for every session so data are comparable across studies and RAs.
+
+- **Covers**: equipment care, pre-session checks, participant fitting, recording, upload, and data handling.
+- **Does not cover**: study-specific task scripts, stimulus presentation, or analysis pipelines. Those live in each study's protocol.
+- Each study's IRB-approved protocol overrides this manual where they conflict. For screen-based tracking, see the Tobii Pro Spectrum manual.
+
+## Where can it be used?
+
+The Neon is portable and can be used in the lab or in the field. Devices are checked out through iLab (see [Booking]) and must be returned to the HNL after each reservation.
+
+## **System/Hardware Overview**
+
+- Neon is a calibration-free wearable eye-tracker: a sensor module in a glasses frame, tethered by USB-C to an Android Companion phone that runs gaze estimation and stores recordings.
+
+- The module contains binocular infrared eye cameras (850 nm), a front-facing scene camera, a microphone, a 9-DoF IMU, and indicator LEDs.
+
+- Gaze is computed in real time on the Companion phone. Recordings can be processed in Pupil Cloud or offline in Neon Player.
+
+::: callout-important
+Nothing is recorded unless the phone is connected and the Neon Companion app is running.
+:::
+
+### **Components of the Neon System**
+
+| Component | What it does | Lab notes |
+|------------------------|------------------------|------------------------|
+| Neon module | Binocular IR eye cameras, scene camera, microphone, IMU, indicator LEDs | Never touch camera lenses with fingers. Serial number is on the back (Data Matrix). |
+| Frame (nest) | Holds the module; attached with two screws | Record which frame was used in the run log. Swap frames only per the swapping guide. |
+| USB-C cable | Powers the module and carries data to the phone | Main failure point. Avoid sharp bends; route behind the wearer. |
+| Companion phone | Runs the Neon Companion app; computes gaze in real time; stores recordings | Lab phone model: Samsung Galaxy S25. |
+| Neon Companion app | Wearer profiles, recording, events, offset correction, upload | Update from the Play Store only between studies, never mid-study. |
+| Prescription lens frame | Frame with swappable corrective lenses for participants who wear glasses | The lab has one, with lenses from -3 to +3 diopters. Only one is available, so check it is free before scheduling participants who need it. |
+| Neon Monitor (browser) | Live view of scene + gaze from a laptop on the same network | Used by the experimenter to check data quality during sessions. |
+| Pupil Cloud | Cloud storage, gaze/fixation processing, enrichments, export | Only if approved by the IRB for the study (see [Data privacy]). |
+| Neon Player | Offline desktop app for viewing and exporting recordings | Use when data cannot go to the cloud. |
+
+::: callout-important
+Do not install Android system updates on the Companion phone unless the version is on Pupil Labs' supported list. Unsupported versions can break USB access to the module.
+:::
+
+**Additional Notes:**
+
+- **Data Management**: Please transfer recordings off the phone as soon as possible (see [After the Participant Leaves]).
+- **Contact**: Contact Jason Geller when something is missing, broken, or when supplies are running low.
+
+## Who can use it?
+
+- Contact the director for the rules, regulations, and access to the booking calendar.
+- The Neon trackers are available to BC faculty, students, and external users.
+- Usage is not free \[[Costs]\].
+- To use the system, you must complete training with the director.
+- Only trained, IRB-listed personnel may run Neon sessions.
+
+### Roles
+
+| Role | Responsibilities |
+|------------------------------------|------------------------------------|
+| Lab director | Approves this manual, Pupil Cloud use, and workspace membership |
+| Lab manager / equipment lead | Owns the hardware, phone OS and app versions, workspace admin, and this manual's revisions |
+| Study lead (grad student / postdoc) | Confirms study-specific settings, wearer naming, templates, and export plan |
+| RA / experimenter | Runs sessions per this manual, keeps the run log, reports problems the same day |
+
+## Support/Training
+
+- **Training before running participants alone**:
+  1.  Read this manual and the study protocol.
+  2.  Complete current CITI human subjects training and be listed on the IRB protocol.
+  3.  Shadow at least two sessions with a trained experimenter.
+  4.  Run two pilot sessions under supervision (one on a labmate), including upload and log entry.
+  5.  Sign off with the lab manager.
+- **Note**: Support generally does not include programming your experiment for you.
+  - A PsychoPy template is available to help you program your experiment: <https://github.com/jgeller112/PL_Demo>
+  - Troubleshooting assistance is provided if the experiment is not working properly.
+  - **Preprocessing/Analyzing Data**:
+    - Tutorials are available to help with data preprocessing and analysis.
+    - Consulting is an additional cost.
+    - Helping you design your study, analyze data, or performing analyses/write-up results contributes to your project under the credit taxonomy <https://credit.niso.org/> and warrants authorship (regardless of payment).
+
+## Booking
+
+- Book the Neon via iLab (email John Maloney \[malonegl\@bc.edu\] for access). Ensure that the booking is under the appropriate schedule.
+
+  - [Pupil Labs Neon eye-trackers](https://bc.ilab.agilent.com/schedules/563227#/schedule/multi/)
+
+- Before starting a new study, please fill out this Qualtrics form: <https://docs.google.com/forms/d/e/1FAIpQLScizVkYkFd064MXpGUShDfyR9XHXktQKEyPyIgszIwggkoAbw/viewform>
+
+- **Every new lab and every new study must set up its own Pupil Cloud workspace.** Do not record into another lab's or study's workspace. Contact the lab manager to have the workspace added to the Companion app.
+
+  ::: callout-important
+  Recordings are stored in whichever workspace is selected in the Companion app when you record. Always select your study's workspace in the app before recording.
+  :::
+
+## Costs
+
+- You pay for each hour of use:
+  - **Self Use** Mon-Fri 12:00 AM - 05:00 PM (Internal: \$6.00/hr, External Non-Academic: \$30.00/hr, External Academic: \$30.00/hr)
+  - **Assisted Use** Mon-Fri 09:00 AM - 05:00 PM (Internal: \$102.92/hr, External Non-Academic: \$199.41/hr, External Academic: \$199.41/hr) (needs approval)
+  - **Training Session** Mon-Fri 09:00 AM - 05:00 PM (Internal: \$102.92/hr, External Non-Academic: \$199.41/hr, External Academic: \$199.41/hr) (needs approval)
+
+## Data privacy
+
+Scene video captures faces, screens, and audio of anyone nearby, so it is identifiable data from the moment recording starts.
+
+- Confirm the consent form covers video, audio, and (if used) cloud storage on third-party servers before any recording.
+- Turn audio recording off in the Companion app unless the protocol requires it.
+- Never record bystanders who have not consented. In shared spaces, point out recording to others or pause.
+- Use participant IDs only. Never put names, initials, or birthdates in wearer profiles, recording names, or events.
+- Do not copy recordings to personal devices or personal cloud accounts.
+
+## File Storage
+
+- **Naming**: `STUDYCODE-PID_S#` for recordings (e.g., `MWC-P012_S1`), matching the wearer name. One Pupil Cloud project per study.
+- Raw recordings are kept unchanged as the source of truth; every analysis starts from an export, never from edited raw files.
+- **What to keep**:
+  1.  The native recording folder (never modified), on secure lab storage with a backup.
+  2.  The CSV export (gaze, fixations, saccades, blinks, events, IMU, and eye states where available) in the study's `data/raw/` folder.
+  3.  The run log, saved alongside the data.
+  4.  A note of the Companion app version, Pupil Cloud or Neon Player version, and any enrichment settings.
+- **Sharing**: Scene videos are identifiable and are not posted publicly. Share de-identified CSVs and code per the study's data-sharing plan.
+
+::: callout-important
+Phone storage is limited. Delete recordings from the phone only after the cloud or server copy is verified.
+:::
+
+## Cleaning
+
+- Wipe scene and eye camera lenses gently with the supplied microfiber cloth only, and only if dusty. Never use liquid on the module.
+- Disinfect the frame (nose pads, temples) with an alcohol disinfectant wipe before and after every participant, and let it dry fully.
+- Do not let wipes touch the cameras or USB connectors.
+
+## DOs and DON'Ts
+
+### Dos
+
+- **Charge the Companion phone to 100% before every session** (overnight with the supplied fast charger).
+- Log every recording in the run log, including which frame and module were used.
+- Report hardware damage, failed recordings, or app errors to the lab manager the same day.
+- Always book all sessions via iLab. This includes booking time to pilot your experiment.
+- **Always start your session in the iLab kiosk before beginning, and end it in the kiosk when you are done.**
+
+### Don'ts
+
+- Don't install Android system updates or update the Neon Companion app mid-study.
+- Don't touch camera lenses with your fingers or use liquid on the module.
+- Don't sharply bend or tug the USB-C cable.
+- Don't leave your data on the phone. Recordings must exist in at least two places before anything is deleted.
+
+# User Guide
+
+## Before the Participant Arrives
+
+Start about 30 minutes before the participant arrives. The goal is a charged, connected, clean system with enough storage and the right study settings.
+
+1.  **Start your session in iLab.** Always start your session in the iLab kiosk before beginning. Navigate to `Go to Kiosk` under scheduling, find your reservation, and start your session.
+
+2.  **Charge.** Companion phone at 100%. For sessions over about 3 hours, use a powered USB-C hub to charge during recording.
+
+3.  **Inspect hardware.** Check the module screws are tight, the cable has no kinks or frayed ends, and connectors are clean and dry.
+
+4.  **Clean and disinfect** (see [Cleaning]).
+
+5.  **Check the phone.**
+
+    - Airplane mode or Do Not Disturb on; Wi-Fi on only if using Neon Monitor or uploading.
+    - Free storage at least \[fill in, e.g., 20 GB\].
+    - Neon Companion app version matches the version logged for this study.
+    - Android version is on the supported list. Decline any system update prompts.
+
+    ::: callout-note
+    Roughly 1 GB per 10 minutes of recording is a safe planning figure; confirm with a test recording.
+    :::
+
+6.  **Check workspace and settings.** In the app, select your study's workspace (not another lab's or study's) and confirm it is active, audio is set per protocol, and cloud upload is on or off per protocol.
+
+7.  **Connect and test.** Plug the cable into the phone and wait for the app to recognize Neon. Put the glasses on yourself, start a 30-second test recording, and confirm the gaze circle tracks your fixations. Delete the test recording.
+
+8.  **Set up the space.** Remove or cover identifying material from the scene camera's view (posters with names, open screens). Prepare the run log (paper or \[fill in: shared sheet location\]).
+
+9.  **If streaming:** set up the live stream (see [Live Streaming]) and confirm the live scene and gaze appear.
+
+## Upon Participant Arrival
+
+::: callout-note
+# Difficulties with eyeglasses, makeup, etc.
+
+### Eyeglasses
+
+Regular glasses usually cannot be worn under Neon. The lab has **one prescription lens frame** with lenses from **-3 to +3 diopters**. Participants whose prescription is outside this range should wear contacts or be handled per the study's exclusion rules.
+
+### Contact lenses
+
+Contacts are fine.
+
+### Makeup
+
+Heavy mascara or eyeliner can reduce eye-image quality. Note it in the run log.
+:::
+
+Neon needs no calibration, but every participant gets a fit check and a gaze validation before the task. This takes about 5 minutes.
+
+1.  **Obtain consent** per the IRB protocol, including video, audio (if on), and cloud storage (if used). Do not put glasses on before consent.
+
+2.  **Screen for fit issues.** Ask about prescription glasses, contact lenses, and heavy eye makeup (see above). If the participant needs the prescription frame, ask for their prescription and fit the matching lenses (-3 to +3 only).
+
+3.  **Create the wearer profile.** In the Companion app, add a new wearer named with the participant ID only (e.g., `STUDY-P012`). Use one profile per participant so offset corrections never carry over to the wrong person.
+
+4.  **Enter IED if the study uses pupil size.** Measure inter-eye distance and enter it in the wearer profile.
+
+5.  **Fit the glasses.** Seat them like normal glasses: centered, resting on the nose and ears, not tilted.
+
+    - Attach the head strap for any task with head movement.
+    - Route the cable behind the head and clip the phone to the participant's waistband or place it on the table.
+
+6.  **Check eye images.** In the app, both eyes should be fully visible in the eye video. If not, reseat the glasses or try a different nose pad.
+
+### Gaze validation
+
+Ask the participant to look at 3 to 5 known targets (e.g., the corners and center of a target card at the task distance). The gaze circle should land on each target.
+
+### Offset correction
+
+Apply offset correction only if gaze is consistently shifted in one direction. Do it in the wearer profile while the participant fixates a target at the task's viewing distance.
+
+::: callout-note
+Offset is distance-specific, so close-range tasks (under about 1 m) are most affected.
+:::
+
+Re-validate after any correction and log the result (**pass / pass after correction / fail**).
+
+## Live Streaming
+
+You can watch the scene video and gaze live on a computer with Neon Monitor.
+
+1.  **Connect the phone and the computer to the same Wi-Fi network.** The live stream only works when both devices are on the same network.
+2.  Open the Stream screen in the Companion app to see the phone's address.
+3.  Enter that address in a web browser on the computer. The live scene and gaze should appear.
+
+::: callout-note
+If nothing appears, campus Wi-Fi may be blocking the connection between devices. Use a dedicated lab router or hotspot instead (see [Troubleshooting]).
+:::
+
+## Recording
+
+Start the recording before the task begins and stop it only after the task ends, so no trial is lost at the edges. Mark every task boundary with an event.
+
+1.  **Start recording.** Press the record button in the Companion app (or start it from the task script via the Real-Time API). Confirm the timer is running.
+
+2.  **Record a validation segment.** Have the participant fixate the target card points for about 5 seconds each. This lets analysts check accuracy post hoc.
+
+3.  **Send events.** Mark task start, block boundaries, and task end. Use the study's event names exactly (e.g., `task_start`, `block1_start`).
+
+    ::: callout-note
+    Events can be added from the app, Neon Monitor, or the experiment script; scripted events are preferred for timing precision.
+    :::
+
+4.  **Monitor during the session.** Watch Neon Monitor or glance at the phone between blocks. Stop and fix if:
+
+    - the phone vibrates or the module's red LED blinks (low battery, low storage, or connection loss; the app shows the reason);
+    - the gaze circle disappears or is clearly off target;
+    - the glasses have shifted noticeably on the face.
+
+5.  **After a refit mid-session**, re-run the validation segment and add an event (`refit`) so analysts can separate the data.
+
+6.  **End the task.** Send the `task_end` event, re-run the validation segment, then stop the recording.
+
+7.  Recording from Multiple Glasses
+
+The Companion app controls one pair of glasses at a time. To record from more than one pair at once (e.g., several participants together), use one of these tools instead of starting each phone by hand:
+
+- **SocialEyes**: streams, records, and synchronizes data from multiple Neon devices. <https://github.com/beatlab-mcmaster/socialeyes>
+- **Pupil Labs TUI**: a terminal interface for controlling several Neon devices at once.
+
+::: callout-note
+Each pair of glasses still needs its own Companion phone, wearer profile, and run log entry. All phones must be on the same network as the computer running the tool.
+:::
+
+## After the Participant Leaves
+
+The recording is not safe until it exists in at least two places. Finish these steps before the next participant.
+
+1.  **Confirm the recording saved.** Open it in the app's recordings list, play a few seconds, and check that gaze is overlaid.
+
+2.  **Remove the glasses.** Unplug the cable from the phone first, then remove the glasses from the participant.
+
+3.  **Upload or offload.**
+
+    - **Cloud studies**: connect to Wi-Fi and confirm the upload completes (the cloud icon shows done) before deleting anything from the phone.
+    - **Offline studies**: connect the phone to the lab computer by USB, copy the recording folder to the study's secure storage location, and verify the copy opens in Neon Player.
+
+4.  **Clean** (see [Cleaning]).
+
+5.  **Store.** Put the glasses in their case, coil the cable loosely, and put the phone on the charger.
+
+6.  **Delete from the phone** only after the cloud or server copy is verified, per the study's data plan.
+
+7.  **Report problems** (hardware damage, failed recordings, app errors) to the lab manager the same day.
+
+8.  **End your session in iLab.** Return to the iLab kiosk and end your session.
+
+## Data Export
+
+| Route | When to use | Steps |
+|------------------------|------------------------|------------------------|
+| Pupil Cloud | IRB permits third-party cloud storage | Add recordings to the study project, run enrichments (e.g., Marker Mapper for screens, Reference Image Mapper for scenes) as specified by the study lead, then download the Timeseries Data + Scene Video export. |
+| Neon Player | Data must stay on lab servers | Open the native recording folder copied from the phone, check gaze and events, then export CSVs and video. |
+
+::: callout-important
+Post-hoc offset correction is possible in Pupil Cloud, but it changes all downstream data (fixations, mapped gaze). Only the study lead applies it, and the change is logged.
+:::
+
+## Troubleshooting
+
+Most problems are the cable, the phone's battery or storage, or an Android update. Check those first; full guidance is in Pupil Labs' troubleshooting documentation.
+
+| Symptom | Likely cause | Fix |
+|------------------------|------------------------|------------------------|
+| Phone vibrates, red LED blinks on module | Low battery, low storage, or unstable connection | Open the app to read the error. Charge, free space, or reseat the cable. |
+| App does not recognize Neon / cameras not shown | Loose cable, wrong cable, or unsupported Android version | Reseat both cable ends; restart the app; check Android version against the supported list. |
+| Android updated by accident | Unsupported OS breaks USB access | Stop using the phone for data. Tell the lab manager; a rollback erases the phone, so back up first. |
+| Gaze consistently shifted | Parallax at close range or wearer physiology | Reseat glasses, re-validate, then apply offset correction at task distance. |
+| Gaze jumps or drops out | Eye not fully in view, glasses slipping, strong sunlight | Reseat glasses, add head strap, reduce direct sunlight on the eyes. |
+| Neon Monitor shows nothing | Laptop and phone on different networks, or campus Wi-Fi blocks device discovery | Use a dedicated lab router or hotspot; enter the phone's IP from the app's Stream screen. |
+| Upload stuck | No Wi-Fi or large file | Keep the phone on Wi-Fi and charging; do not delete the local copy. |
+
+If none of these work, stop the session, log the issue, and contact the lab manager. Pupil Labs support: Discord or [info\@pupil-labs.com](mailto:info@pupil-labs.com) (have the module serial number ready).
+
+## Session Checklists
+
+*Print and keep with the device.*
+
+### Before the participant arrives
+
+- Session started in iLab kiosk
+- Phone at 100%, storage above minimum
+- Cable, screws, connectors inspected
+- Frame disinfected and dry; lenses clean
+- Study's own workspace selected in the app; audio and upload settings correct
+- Self-test recording done and deleted
+- Room cleared of identifying material; run log ready
+
+### With the participant
+
+- Consent signed (video, audio, cloud as applicable)
+- Wearer profile created with participant ID only
+- Glasses fitted; both eyes visible
+- Gaze validated; offset applied only if needed
+- Recording started; validation segment recorded
+- Events sent at task start, blocks, and end
+- Closing validation segment; recording stopped
+
+### After the participant leaves
+
+- Recording plays back with gaze
+- Uploaded or copied to secure storage and verified
+- Run log completed
+- Frame disinfected; device cased; phone charging
+- Problems reported to lab manager
+- Session ended in iLab kiosk
+
+## Sources
+
+Pupil Labs Neon documentation (<https://docs.pupil-labs.com/neon/>), accessed 2026-10-07:
+
+- Neon module technical overview
+- Compatible Companion devices and Android versions
+- Cleaning and disinfecting
+- Wearers and IED
+- Offset correction in the Companion app
+- Offset correction in Pupil Cloud
+- Troubleshooting
